@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Consistent, readable font */
+            background-color: #f4f4f9; /* Light background color */
+            padding: 20px; /* Padding around the content */
+            line-height: 1.6; /* Improved line spacing for readability */
+            display: flex; /* Ensures flexbox layout */
+            justify-content: center; /* Centers the form horizontally */
+            align-items: center; /* Centers the form vertically */
+            min-height: 100vh; /* Full viewport height */
+        }
+        form {
+            background: #ffffff; /* White background for form */
+            padding: 20px; /* Padding inside the form */
+            border-radius: 8px; /* Rounded corners for form */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+            width: 100%; /* Full width */
+            max-width: 320px; /* Maximum width */
+        }
+        h1 {
+            text-align: center; /* Center-align the title */
+            margin-bottom: 20px; /* Space below the title */
+        }
+        p {
+            margin-bottom: 10px; /* Space below each paragraph */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%; /* Full width of the form */
+            padding: 10px; /* Padding inside input fields for better accessibility */
+            margin-top: 5px; /* Space above the input field */
+            border: 1px solid #ccc; /* Subtle border around the inputs */
+            border-radius: 4px; /* Rounded corners on inputs */
+            box-sizing: border-box; /* Border and padding included in width */
+        }
+        button {
+            width: 100%; /* Full width button for better mobile accessibility */
+            padding: 10px; /* Padding inside button */
+            background-color: #4CAF50; /* Green background for a friendly 'go' color */
+            color: white; /* Text color for contrast */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners on button */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin-top: 20px; /* Space above the button */
+        }
+        button:hover {
+            background-color: #45a049; /* Darker shade on hover for interaction */
+        }
+    </style>
+</head>
+<body>
+<h1>Enter Payment Details</h1>
+<form th:action="@{/process-payment}" method="post">
+    <input type="hidden" th:value="${booking.id}" name="bookingId">
+    <p>Card Number: <input type="text" name="cardNumber" required></p>
+    <p>Expiry Date: <input type="text" name="expiryDate" required></p>
+    <p>CVV: <input type="text" name="cvv" required></p>
+    <button type="submit">Submit Payment</button>
+</form>
+</body>
+</html>

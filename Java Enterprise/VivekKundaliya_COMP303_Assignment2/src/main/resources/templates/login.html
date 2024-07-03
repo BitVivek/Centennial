@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking Service</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Sets the font for a smooth text look */
+            background-color: #f4f4f9; /* Light grey background for the whole page */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers the form in the middle of the page horizontally */
+            justify-content: center; /* Centers content vertically */
+            height: 100vh; /* Use full height of the viewport */
+            margin: 0; /* Remove default margin */
+        }
+        h1 {
+            color: #333; /* Dark grey color for the title */
+            margin-bottom: 20px; /* Space below the title */
+        }
+        form {
+            padding: 20px;
+            background: #ffffff; /* White background for the form */
+            border: 1px solid #ccc; /* Subtle border */
+            border-radius: 8px; /* Rounded corners for the form */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for 3D effect */
+            width: 300px; /* Set a specific width for the form */
+        }
+        label {
+            display: block; /* Make labels block to format input below them */
+            margin-bottom: 8px; /* Space below labels */
+            color: #333; /* Dark grey color for text for better readability */
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%; /* Full width of the form */
+            padding: 8px; /* Padding inside the input fields */
+            margin-bottom: 16px; /* Space below inputs */
+            border-radius: 4px; /* Slightly rounded corners on inputs */
+            border: 1px solid #ccc; /* Light grey border for inputs */
+        }
+        button {
+            background-color: #007BFF; /* Bootstrap blue for the button */
+            color: white; /* White text for visibility */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Padding inside the button */
+            border-radius: 5px; /* Rounded corners for the button */
+            width: 100%; /* Full width button */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover for interaction feedback */
+        }
+    </style>
+</head>
+<body>
+<h1>Flight Booking Service</h1> <!-- Title visible on the page -->
+<form th:action="@{/login}" method="post">
+    <div>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password" required>
+    </div>
+    <div>
+        <button type="submit">Sign In</button>
+    </div>
+</form>
+</body>
+</html>

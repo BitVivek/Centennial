@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Consistent, readable font */
+            background-color: #f8f8f8; /* Light background color */
+            padding: 20px; /* Padding around the content */
+            line-height: 1.6; /* Improved line spacing for readability */
+            color: #333; /* Darker text for better readability */
+        }
+        h1, h2 {
+            color: #0056b3; /* Theme color for headings */
+        }
+        form {
+            background: #fff; /* White background for forms */
+            padding: 15px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin-bottom: 20px; /* Space below the form */
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            width: calc(100% - 16px); /* Full width minus padding */
+            box-sizing: border-box; /* Border and padding included in width */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF; /* Bright blue for actions */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer; /* Cursor hint for clickable */
+            display: inline-block;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .booking {
+            margin-top: 10px;
+            background: #ffffff; /* Background for each booking card */
+            padding: 10px;
+            border: 1px solid #ddd; /* Slight border */
+            border-radius: 5px; /* Rounded corners for booking cards */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+    </style>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <form th:action="@{/update-profile}" method="post">
+        <input type="hidden" th:value="${passenger.id}" name="id"/>
+        <p>Name: <input type="text" th:value="${passenger.firstName}" name="firstName"/></p>
+        <p>Email: <input type="text" th:value="${passenger.email}" name="email"/></p>
+        <p>Password: <input type="password" th:value="${passenger.password}" name="password"/></p>
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <h2>Your Bookings</h2>
+    <div th:each="booking : ${bookings}" class="booking">
+        <p th:text="'Flight: ' + ${booking.flight.airlineName} + ', Date: ' + ${#dates.format(booking.flight.departureTime, 'dd MMM yyyy HH:mm')}"></p>
+        <p>Status: <span th:text="${booking.status}"></span></p>
+        <a th:if="${booking.status != 'CANCELLED'}" th:href="@{/cancel-booking(bookingId=${booking.id})}">Cancel Booking</a>
+    </div>
+</body>
+</html>

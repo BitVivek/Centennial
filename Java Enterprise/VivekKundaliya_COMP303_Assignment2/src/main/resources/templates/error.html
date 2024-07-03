@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link href="/css/styles.css" rel="stylesheet"> <!-- Ensure your CSS path is correct -->
+</head>
+<body>
+    <div class="error-container">
+        <h1>Oops!</h1>
+        <h2>Something went wrong</h2>
+        <p th:text="${errorMessage} ?: 'An unexpected error has occurred.'"></p>
+        <a href="/" class="btn">Go Home</a>
+        <a href="javascript:history.back()" class="btn">Go Back</a>
+    </div>
+</body>
+</html>

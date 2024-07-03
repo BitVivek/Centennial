@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Booking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+        }
+        div {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            background-color: #4CAF50; /* Green, for success actions */
+            color: white;
+            padding: 10px 20px;
+            margin: 20px auto;
+            width: 50%;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        a:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+<h1>Booking Confirmation</h1>
+<div>
+    <p>Flight: <span th:text="${booking.flight.airlineName} + ' - ' + ${booking.flight.flightNumber}"></span></p>
+    <p>Departure: <span th:text="${#dates.format(booking.flight.departureTime, 'dd MMMM yyyy HH:mm')}"></span></p>
+    <p>Arrival: <span th:text="${#dates.format(booking.flight.arrivalTime, 'dd MMMM yyyy HH:mm')}"></span></p>
+    <p>Passengers: Adults: <span th:text="${booking.numberOfAdults}"></span>, Children: <span th:text="${booking.numberOfChildren}"></span></p>
+    <p>Total Amount Paid: <span th:text="${booking.amountPaid}"></span> USD</p>
+</div>
+<a th:href="@{/make-payment(bookingId=${booking.id})}">Proceed to Payment</a>
+</body>
+</html>
